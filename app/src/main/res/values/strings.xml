@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WeatherForecast</string>
+
+    <string name="no_internet_exception">You are offline</string>
 </resources>
