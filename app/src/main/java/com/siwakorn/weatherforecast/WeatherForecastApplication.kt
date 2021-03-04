@@ -1,6 +1,7 @@
 package com.siwakorn.weatherforecast
 
 import android.app.Application
+import com.siwakorn.weatherforecast.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -10,7 +11,10 @@ class WeatherForecastApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@WeatherForecastApplication)
+            modules(getListModule())
         }
     }
+
+    private fun getListModule() = listOf(networkModule)
 
 }
