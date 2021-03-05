@@ -1,10 +1,7 @@
 package com.siwakorn.weatherforecast
 
 import android.app.Application
-import com.siwakorn.weatherforecast.di.networkModule
-import com.siwakorn.weatherforecast.di.serviceModule
-import com.siwakorn.weatherforecast.di.useCaseModule
-import com.siwakorn.weatherforecast.di.viewModelModule
+import com.siwakorn.weatherforecast.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -20,6 +17,7 @@ class WeatherForecastApplication : Application() {
 
     private fun getListModule() =
         listOf(
+            commonModule,
             networkModule, serviceModule,
             useCaseModule, viewModelModule
         )

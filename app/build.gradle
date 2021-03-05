@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
 
@@ -20,9 +19,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", '"https://api.openweathermap.org/"')
+            buildConfigField("String", "API_KEY", '"04442feeb986c4c749710060f040d924"')
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "BASE_URL", '"https://api.openweathermap.org/"')
+            buildConfigField("String", "API_KEY", '"04442feeb986c4c749710060f040d924"')
         }
     }
     compileOptions {
