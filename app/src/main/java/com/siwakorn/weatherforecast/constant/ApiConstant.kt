@@ -6,4 +6,8 @@ object ApiConstant {
 
     }
 
+    object QueryParam {
+        const val APP_ID = "appid"
+    }
+
 }
