@@ -9,5 +9,14 @@
         android:id="@+id/forecastMainFragment"
         android:name="com.siwakorn.weatherforecast.ui.main.search.ForecastSearchFragment"
         android:label="ForecastMainFragment"
-        tool:layout="@layout/fragment_forecast_search" />
+        tool:layout="@layout/fragment_forecast_search">
+        <action
+            android:id="@+id/action_forecastMainFragment_to_forecastDailyFragment"
+            app:destination="@id/forecastDailyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forecastDailyFragment"
+        android:name="com.siwakorn.weatherforecast.ui.main.daily.ForecastDailyFragment"
+        android:label="ForecastDailyFragment"
+        tool:layout="@layout/fragment_forecast_daily" />
 </navigation>
