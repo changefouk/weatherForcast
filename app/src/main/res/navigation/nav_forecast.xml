@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:id="@+id/nav_forecast"
+    app:startDestination="@id/forecastMainFragment">
+
+    <fragment
+        android:id="@+id/forecastMainFragment"
+        android:name="com.siwakorn.weatherforecast.ui.main.ForecastMainFragment"
+        android:label="ForecastMainFragment"
+        tool:layout="@layout/fragment_forecast_main" />
+</navigation>

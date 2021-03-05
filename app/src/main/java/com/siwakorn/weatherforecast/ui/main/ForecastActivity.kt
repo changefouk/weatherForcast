@@ -11,7 +11,7 @@ class ForecastActivity : BaseActivity<ActivityForecastBinding>() {
         get() = ActivityForecastBinding::inflate
 
     override fun setup() {
-        TODO("Not yet implemented")
+
     }
 
 }

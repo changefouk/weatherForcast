@@ -3,6 +3,7 @@
     package="com.siwakorn.weatherforcast">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name="com.siwakorn.weatherforecast.WeatherForecastApplication"
         android:allowBackup="true"
@@ -10,6 +11,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WeatherForecast" />
+        android:theme="@style/Theme.WeatherForecast">
+
+        <activity android:name="com.siwakorn.weatherforecast.ui.main.ForecastActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
 
 </manifest>
