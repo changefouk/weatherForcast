@@ -18,7 +18,7 @@ class WeatherForecastApplication : Application() {
     private fun getListModule() =
         listOf(
             commonModule,
-            networkModule, serviceModule,
+            networkModule, serviceModule, repositoryModule,
             useCaseModule, viewModelModule
         )
 

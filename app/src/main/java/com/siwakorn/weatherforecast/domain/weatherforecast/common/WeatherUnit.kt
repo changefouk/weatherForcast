@@ -1,4 +1,4 @@
-package com.siwakorn.weatherforecast.domain.common
+package com.siwakorn.weatherforecast.domain.weatherforecast.common
 
 
 /**

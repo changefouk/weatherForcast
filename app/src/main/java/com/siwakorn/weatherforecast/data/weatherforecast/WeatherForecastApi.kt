@@ -6,13 +6,13 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface WeatherApi {
+interface WeatherForecastApi {
 
     @GET(ApiConstant.EndPoint.WEATHER)
     suspend fun getWeather(
         @Query(ApiConstant.QueryParam.LATITUDE) latitude: Double,
         @Query(ApiConstant.QueryParam.LONGITUDE) longitude: Double,
         @Query(ApiConstant.QueryParam.UNITS) unit: String
-    ): Flow<WeatherResponseModel>
+    ): WeatherResponseModel
 
 }
