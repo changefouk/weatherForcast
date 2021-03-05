@@ -1,4 +1,4 @@
-package com.siwakorn.weatherforecast.util.network.exception
+package com.siwakorn.weatherforecast.common.network.exception
 
 import java.io.IOException
 

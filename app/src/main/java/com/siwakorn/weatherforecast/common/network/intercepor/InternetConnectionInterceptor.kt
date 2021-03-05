@@ -1,9 +1,9 @@
-package com.siwakorn.weatherforecast.util.network.intercepor
+package com.siwakorn.weatherforecast.common.network.intercepor
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import com.siwakorn.weatherforecast.util.network.exception.NoInternetException
+import com.siwakorn.weatherforecast.common.network.exception.NoInternetException
 import okhttp3.Interceptor
 import okhttp3.Response
 

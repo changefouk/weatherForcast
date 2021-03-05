@@ -1,8 +1,9 @@
 package com.siwakorn.weatherforecast.di
 
 import android.content.Context
-import com.siwakorn.weatherforecast.util.network.intercepor.InternetConnectionInterceptor
-import com.siwakorn.weatherforecast.util.network.intercepor.ResponseConnectionInterceptor
+import com.siwakorn.weatherforecast.common.config.ConfigProvider
+import com.siwakorn.weatherforecast.common.network.intercepor.InternetConnectionInterceptor
+import com.siwakorn.weatherforecast.common.network.intercepor.ResponseConnectionInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -12,11 +13,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val networkModule = module {
+    // interceptor
     single { provideHttpLoggingInterceptor() }
     single { provideInternetConnectionInterceptor(androidContext()) }
     single { provideResponseConnectionInterceptor() }
+
+    // okhttp & retrofit
     single { provideOkHttpClient(get(), get(), get()) }
-    single { provideRetrofit(get()) }
+    single { provideRetrofit(get(), get()) }
 }
 
 private fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
@@ -43,8 +47,8 @@ private fun provideOkHttpClient(
     .addInterceptor(responseConnectionInterceptor)
     .build()
 
-private fun provideRetrofit(okHttpClient: OkHttpClient) =
-    Retrofit.Builder().baseUrl("") // TODO pls input api
+private fun provideRetrofit(okHttpClient: OkHttpClient, configProvider: ConfigProvider) =
+    Retrofit.Builder().baseUrl(configProvider.baseUrl)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

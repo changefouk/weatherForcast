@@ -1,7 +1,7 @@
-package com.siwakorn.weatherforecast.util.network.intercepor
+package com.siwakorn.weatherforecast.common.network.intercepor
 
 import com.siwakorn.weatherforecast.util.extension.isSuccess
-import com.siwakorn.weatherforecast.util.network.exception.ResponseErrorException
+import com.siwakorn.weatherforecast.common.network.exception.ResponseErrorException
 import okhttp3.Interceptor
 import okhttp3.Response
 
