@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/forecastMainFragment"
-        android:name="com.siwakorn.weatherforecast.ui.main.ForecastMainFragment"
+        android:name="com.siwakorn.weatherforecast.ui.main.search.ForecastSearchFragment"
         android:label="ForecastMainFragment"
-        tool:layout="@layout/fragment_forecast_main" />
+        tool:layout="@layout/fragment_forecast_search" />
 </navigation>
