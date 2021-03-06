@@ -31,6 +31,8 @@ class ForecastDailyFragment : BaseFragment<FragmentForecastDailyBinding>() {
             layoutManager = LinearLayoutManager(context)
             adapter = forecastDailyAdapter
         }
+
+        binding.ivBackButton.setOnClickListener { activity?.onBackPressed() }
     }
 
     private fun observe() {
