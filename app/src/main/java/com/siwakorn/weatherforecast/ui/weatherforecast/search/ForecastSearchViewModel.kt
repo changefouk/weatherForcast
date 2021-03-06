@@ -27,8 +27,19 @@ class ForecastSearchViewModel constructor(
 
     val weatherIconUrl: LiveData<String> =
         _weather.map { resourceProvider.string(R.string.config_weather_icon_url, it.weather.icon) }
-    val temp: LiveData<String> = _weather.map { it.weatherMain.temp.toString() }
-    val humidity: LiveData<String> = _weather.map { it.weatherMain.humidity.toString() }
+
+    val temp: LiveData<String> = _weather.map {
+        if (_weatherUnit.value == WeatherUnit.FAHRENHEIT) {
+            resourceProvider.string(R.string.temperature_fahrenheit, it.weatherMain.temp)
+        } else {
+            resourceProvider.string(R.string.temperature_celsius, it.weatherMain.temp)
+        }
+    }
+
+    val humidity: LiveData<String> = _weather.map {
+        resourceProvider.string(R.string.humidity_percent, it.weatherMain.humidity)
+    }
+
     val cityName: LiveData<String> = _weather.map { it.cityName }
     val dateTime: LiveData<String> = _weather.map { it.getDisplayDateTime() }
 
