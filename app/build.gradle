@@ -75,10 +75,8 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
 
-    // database
-    kapt "androidx.room:room-compiler:$room_version"
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
+    // permission
+    implementation 'com.karumi:dexter:6.2.2'
 
     // ok http
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
@@ -94,6 +92,7 @@ dependencies {
 
     // image loader
     implementation "com.github.bumptech.glide:glide:$glide_version"
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
     kapt "com.github.bumptech.glide:compiler:$glide_compiler_version"
 
     // test

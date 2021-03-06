@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.siwakorn.weatherforcast.databinding.FragmentWeatherSearchBinding
-import com.siwakorn.weatherforcast.databinding.LayoutWeatherDetailBinding
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.WeatherUnit
 import com.siwakorn.weatherforecast.ui.base.BaseFragment
 import com.siwakorn.weatherforecast.ui.weatherforecast.daily.ForecastDailyNavigation
 import com.siwakorn.weatherforecast.util.extension.loadImageUrl
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
 
@@ -19,7 +19,7 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
     private val viewModel: ForecastSearchViewModel by viewModel()
 
     override fun setup() {
-        viewModel.fetch()
+        observe()
         binding.btnSeeForecast.setOnClickListener {
             findNavController().navigate(
                 WeatherSearchFragmentDirections.actionForecastMainFragmentToForecastDailyFragment(
@@ -27,7 +27,11 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
                 )
             )
         }
-        observe()
+        checkPermissionLocation({
+            viewModel.getWeatherByLocation(it)
+        }, {
+
+        })
     }
 
     private fun observe() {

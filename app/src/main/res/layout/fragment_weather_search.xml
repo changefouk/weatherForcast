@@ -17,6 +17,7 @@
         android:drawableTint="@color/purple_500"
         android:elevation="4dp"
         android:hint="Enter"
+        android:imeOptions="actionSearch"
         android:paddingHorizontal="8dp"
         android:paddingVertical="12dp"
         app:layout_constraintEnd_toEndOf="parent"

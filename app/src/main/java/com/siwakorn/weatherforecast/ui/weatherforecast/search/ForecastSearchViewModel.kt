@@ -1,5 +1,6 @@
 package com.siwakorn.weatherforecast.ui.weatherforecast.search
 
+import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
@@ -20,6 +21,8 @@ class ForecastSearchViewModel constructor(
     private val useCase: GetWeatherUseCase
 ) : BaseViewModel() {
 
+    private val _weatherUnit = MutableLiveData(WeatherUnit.CELSIUS)
+
     private val _weather = MutableLiveData<WeatherResponse>()
 
     val weatherIconUrl: LiveData<String> =
@@ -29,9 +32,13 @@ class ForecastSearchViewModel constructor(
     val cityName: LiveData<String> = _weather.map { it.cityName }
     val dateTime: LiveData<String> = _weather.map { it.getDisplayDateTime() }
 
-    fun fetch() {
+    fun getWeatherByLocation(location: Location) {
         viewModelScope.launch {
-            val request = GetWeatherBody(13.756331, 100.501762, WeatherUnit.CELSIUS.unit)
+            val request = GetWeatherBody(
+                location.latitude,
+                location.longitude,
+                _weatherUnit.value?.unit ?: WeatherUnit.CELSIUS.unit
+            )
             useCase.execute(request)
                 .flowOn(Dispatchers.IO)
                 .onStart { showLoading() }
