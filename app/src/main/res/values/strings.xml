@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">WeatherForecast</string>
 
+    <!--  config -->
+    <string name="config_weather_icon_url">http://openweathermap.org/img/wn/%s@2x.png</string>
+
+    <!--  label -->
     <string name="no_internet_exception">You are offline</string>
 </resources>
