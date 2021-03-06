@@ -1,8 +1,9 @@
 package com.siwakorn.weatherforecast.domain.weatherforecast.weather
 
-import com.google.gson.annotations.SerializedName
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.Coord
+import com.siwakorn.weatherforecast.domain.weatherforecast.common.Weather
 
 data class WeatherResponse(
-    @SerializedName("coord") val coord: Coord
+    val coord: Coord,
+    val weather: Weather
 )

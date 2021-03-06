@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.Coord
 
 data class CoordModel(
-    @SerializedName("lat") val latitude: Double = 0.0,
-    @SerializedName("lon") val longitude: Double = 0.0
+    @SerializedName("lat") val latitude: Double,
+    @SerializedName("lon") val longitude: Double
 )
 
 fun CoordModel.mapToDomain() = Coord(
