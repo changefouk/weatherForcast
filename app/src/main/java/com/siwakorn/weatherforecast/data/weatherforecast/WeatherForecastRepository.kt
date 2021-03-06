@@ -13,10 +13,7 @@ interface WeatherForecastRepository {
 }
 
 class WeatherForecastRepositoryImpl
-constructor(
-    private val api: WeatherForecastApi,
-    private val resourceProvider: ResourceProvider
-) : WeatherForecastRepository {
+constructor(private val api: WeatherForecastApi) : WeatherForecastRepository {
 
     override fun getWeather(request: GetWeatherForecastBody): Flow<WeatherResponse> =
         object : BaseService<WeatherResponseModel, WeatherResponse>() {
@@ -25,7 +22,7 @@ constructor(
                 api.getWeather(request.latitude, request.longitude, request.unit)
 
             override fun mapper(from: WeatherResponseModel): WeatherResponse =
-                from.mapToDomain(resourceProvider)
+                from.mapToDomain()
 
         }.execute()
 

@@ -11,5 +11,5 @@ val serviceModule = module {
 }
 
 val repositoryModule = module {
-    factory<WeatherForecastRepository> { WeatherForecastRepositoryImpl(get(), get()) }
+    factory<WeatherForecastRepository> { WeatherForecastRepositoryImpl(get()) }
 }

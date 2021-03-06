@@ -21,7 +21,7 @@ class ForecastSearchFragment : BaseFragment<FragmentForecastSearchBinding>() {
 
     private fun observe() {
         viewModel.weather.observe(viewLifecycleOwner, {
-            binding.ivWeatherIcon.loadImageUrl(it.weather.iconUrl)
+            binding.ivWeatherIcon.loadImageUrl(it.weather.icon)
         })
     }
 

@@ -10,10 +10,11 @@ import com.siwakorn.weatherforecast.domain.weatherforecast.weather.WeatherRespon
 
 data class WeatherResponseModel(
     @SerializedName("coord") val coord: CoordModel,
-    @SerializedName("weather") val weather: List<WeatherModel>
+    @SerializedName("weather") val weather: List<WeatherModel>,
+    @SerializedName("main") val main: WeatherModel
 ) : BaseResponse()
 
-fun WeatherResponseModel.mapToDomain(resourceProvider: ResourceProvider) = WeatherResponse(
+fun WeatherResponseModel.mapToDomain() = WeatherResponse(
     coord = coord.mapToDomain(),
-    weather = weather[0].mapToDomain(resourceProvider)
+    weather = weather[0].mapToDomain()
 )

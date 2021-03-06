@@ -19,9 +19,9 @@ data class WeatherModel(
     @SerializedName("icon") val icon: String
 )
 
-fun WeatherModel.mapToDomain(resourceProvider: ResourceProvider) = Weather(
+fun WeatherModel.mapToDomain() = Weather(
     id = id,
     main = main,
     description = description,
-    iconUrl = resourceProvider.string(R.string.config_weather_icon_url, icon)
+    icon = icon
 )
