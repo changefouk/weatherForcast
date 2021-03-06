@@ -1,7 +1,8 @@
 package com.siwakorn.weatherforecast.domain.weatherforecast.weather
 
 data class GetWeatherBody(
-    val latitude: Double,
-    val longitude: Double,
+    val queryCityName: String? = null,
+    val latitude: Double? = null,
+    val longitude: Double? = null,
     val unit: String
 )

@@ -48,46 +48,46 @@
 
         <TextView
             android:id="@+id/tv_weather_humidity"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:drawablePadding="8dp"
             android:textSize="18sp"
             app:drawableStartCompat="@drawable/ic_humidity"
+            app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/br_weather_temp"
-            app:layout_constraintWidth_default="wrap"
             tool:text="70%" />
 
         <TextView
             android:id="@+id/tv_weather_city"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:drawablePadding="8dp"
             android:paddingHorizontal="8dp"
             android:textSize="16sp"
             app:drawableStartCompat="@drawable/ic_location"
+            app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_weather_humidity"
-            app:layout_constraintWidth_default="wrap"
             tool:text="Phaya Thai" />
 
         <TextView
             android:id="@+id/tv_weather_date"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:drawablePadding="8dp"
             android:paddingHorizontal="8dp"
             android:textSize="14sp"
+            app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_weather_city"
-            app:layout_constraintWidth_default="wrap"
             tool:text="Sat, March 6 14:00" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

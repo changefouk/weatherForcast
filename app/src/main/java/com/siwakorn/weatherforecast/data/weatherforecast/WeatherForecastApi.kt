@@ -11,15 +11,9 @@ interface WeatherForecastApi {
 
     @GET(ApiConstant.EndPoint.WEATHER)
     suspend fun getWeather(
-        @Query(ApiConstant.QueryParam.Q) cityName: String,
-        @Query(ApiConstant.QueryParam.UNITS) unit: String
-    ): WeatherResponseModel
-
-
-    @GET(ApiConstant.EndPoint.WEATHER)
-    suspend fun getWeather(
-        @Query(ApiConstant.QueryParam.LATITUDE) latitude: Double,
-        @Query(ApiConstant.QueryParam.LONGITUDE) longitude: Double,
+        @Query(ApiConstant.QueryParam.Q) queryCityName: String?,
+        @Query(ApiConstant.QueryParam.LATITUDE) latitude: Double?,
+        @Query(ApiConstant.QueryParam.LONGITUDE) longitude: Double?,
         @Query(ApiConstant.QueryParam.UNITS) unit: String
     ): WeatherResponseModel
 

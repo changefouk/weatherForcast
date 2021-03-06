@@ -22,6 +22,7 @@ class ForecastSearchViewModel constructor(
 ) : BaseViewModel() {
 
     private val _weatherUnit = MutableLiveData(WeatherUnit.CELSIUS)
+    val weatherUnit: LiveData<WeatherUnit> = _weatherUnit
 
     private val _weather = MutableLiveData<WeatherResponse>()
 
@@ -43,11 +44,12 @@ class ForecastSearchViewModel constructor(
     val cityName: LiveData<String> = _weather.map { it.cityName }
     val dateTime: LiveData<String> = _weather.map { it.getDisplayDateTime() }
 
-    fun getWeatherByLocation(location: Location) {
+    fun getWeather(queryCityName: String? = null, location: Location? = null) {
         viewModelScope.launch {
             val request = GetWeatherBody(
-                location.latitude,
-                location.longitude,
+                queryCityName,
+                location?.latitude,
+                location?.longitude,
                 _weatherUnit.value?.unit ?: WeatherUnit.CELSIUS.unit
             )
             useCase.execute(request)
@@ -60,4 +62,11 @@ class ForecastSearchViewModel constructor(
                 }
         }
     }
+
+    fun setWeatherUnit(unit: WeatherUnit) {
+        _weatherUnit.value = unit
+        getWeather(cityName.value)
+    }
+
+    fun hasWeatherData(): Boolean = (_weather.value != null)
 }

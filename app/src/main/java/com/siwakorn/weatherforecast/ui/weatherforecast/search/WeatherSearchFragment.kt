@@ -2,6 +2,7 @@ package com.siwakorn.weatherforecast.ui.weatherforecast.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.navigation.fragment.findNavController
 import com.siwakorn.weatherforcast.databinding.FragmentWeatherSearchBinding
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.WeatherUnit
@@ -20,21 +21,47 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
 
     override fun setup() {
         observe()
+        setupView()
+        initData()
+    }
+
+    private fun initData() {
+        if (!viewModel.hasWeatherData()) {
+            checkPermissionLocation(
+                onSuccess = {
+                    viewModel.getWeather(location = it)
+                },
+                onNeverAskAgain = {
+                    // TODO when nerver ask issue
+                })
+        }
+    }
+
+    private fun setupView() {
         binding.btnSeeForecast.setOnClickListener {
             findNavController().navigate(
                 WeatherSearchFragmentDirections.actionForecastMainFragmentToForecastDailyFragment(
-                    ForecastDailyNavigation(cityName = "london", unit = WeatherUnit.CELSIUS)
+                    ForecastDailyNavigation(
+                        cityName = viewModel.cityName.value ?: "",
+                        unit = viewModel.weatherUnit.value ?: WeatherUnit.CELSIUS
+                    )
                 )
             )
         }
-        checkPermissionLocation({
-            viewModel.getWeatherByLocation(it)
-        }, {
 
-        })
+        binding.tbTemp.setOnCheckedChangeListener { _, isFahrenheit ->
+            if (isFahrenheit) {
+                viewModel.setWeatherUnit(WeatherUnit.FAHRENHEIT)
+            } else {
+                viewModel.setWeatherUnit(WeatherUnit.CELSIUS)
+            }
+        }
 
-        binding.tbTemp.apply {
-
+        binding.edtSearch.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                viewModel.getWeather(queryCityName = binding.edtSearch.text.toString())
+            }
+            false
         }
     }
 
