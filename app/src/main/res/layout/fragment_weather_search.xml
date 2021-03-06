@@ -4,7 +4,8 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_grey">
+    android:background="@color/dark_grey"
+    android:focusableInTouchMode="true">
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edt_search"
@@ -14,7 +15,7 @@
         android:background="@drawable/shape_bg_edittext_search_round_conner"
         android:drawableStart="@android:drawable/ic_menu_search"
         android:drawablePadding="8dp"
-        android:drawableTint="@color/purple_500"
+        android:drawableTint="@color/black"
         android:elevation="4dp"
         android:hint="Enter "
         android:imeOptions="actionSearch"
@@ -24,6 +25,7 @@
         android:paddingHorizontal="8dp"
         android:paddingVertical="12dp"
         android:textColor="@color/black"
+        android:textColorHint="@color/dark_grey_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
