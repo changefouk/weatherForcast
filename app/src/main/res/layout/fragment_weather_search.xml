@@ -17,7 +17,7 @@
         android:drawablePadding="8dp"
         android:drawableTint="@color/black"
         android:elevation="4dp"
-        android:hint="Enter "
+        android:hint="@string/search_box_hint"
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:lines="1"

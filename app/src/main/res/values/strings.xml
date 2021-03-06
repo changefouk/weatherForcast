@@ -11,4 +11,6 @@
     <string name="temperature_fahrenheit">%.0f °F</string>
     <string name="celsius">°C</string>
     <string name="fahrenheit">°F</string>
+
+    <string name="search_box_hint">Enter city name… </string>
 </resources>
