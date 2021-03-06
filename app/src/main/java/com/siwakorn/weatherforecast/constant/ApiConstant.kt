@@ -4,7 +4,7 @@ object ApiConstant {
 
     object EndPoint {
         const val WEATHER = "data/2.5/weather"
-        const val FORECAST = "data/2.5/forecast/hourly"
+        const val FORECAST = "data/2.5/forecast"
     }
 
     object QueryParam {

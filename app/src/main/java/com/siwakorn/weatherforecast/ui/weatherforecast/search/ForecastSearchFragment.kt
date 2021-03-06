@@ -43,7 +43,6 @@ class ForecastSearchFragment : BaseFragment<FragmentForecastSearchBinding>() {
         viewModel.dateTime.observe(viewLifecycleOwner, {
             weatherDetailBinding.tvWeatherDate.text = it
         })
-
     }
 
 }
