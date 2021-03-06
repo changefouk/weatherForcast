@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.siwakorn.weatherforcast.databinding.FragmentForecastSearchBinding
 import com.siwakorn.weatherforecast.ui.base.BaseFragment
+import com.siwakorn.weatherforecast.util.extension.loadImageUrl
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ForecastSearchFragment : BaseFragment<FragmentForecastSearchBinding>() {
@@ -21,7 +22,7 @@ class ForecastSearchFragment : BaseFragment<FragmentForecastSearchBinding>() {
 
     private fun observe() {
         viewModel.weather.observe(viewLifecycleOwner, {
-            binding.ivWeatherIcon
+            binding.ivWeatherIcon.loadImageUrl(it.weather.iconUrl)
         })
     }
 

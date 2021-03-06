@@ -1,5 +1,6 @@
 package com.siwakorn.weatherforecast.data.weatherforecast
 
+import com.siwakorn.weatherforecast.common.resource.ResourceProvider
 import com.siwakorn.weatherforecast.data.base.BaseService
 import com.siwakorn.weatherforecast.data.weatherforecast.model.weather.WeatherResponseModel
 import com.siwakorn.weatherforecast.data.weatherforecast.model.weather.mapToDomain
@@ -12,7 +13,10 @@ interface WeatherForecastRepository {
 }
 
 class WeatherForecastRepositoryImpl
-constructor(private val api: WeatherForecastApi) : WeatherForecastRepository {
+constructor(
+    private val api: WeatherForecastApi,
+    private val resourceProvider: ResourceProvider
+) : WeatherForecastRepository {
 
     override fun getWeather(request: GetWeatherForecastBody): Flow<WeatherResponse> =
         object : BaseService<WeatherResponseModel, WeatherResponse>() {
@@ -21,7 +25,7 @@ constructor(private val api: WeatherForecastApi) : WeatherForecastRepository {
                 api.getWeather(request.latitude, request.longitude, request.unit)
 
             override fun mapper(from: WeatherResponseModel): WeatherResponse =
-                from.mapToDomain()
+                from.mapToDomain(resourceProvider)
 
         }.execute()
 

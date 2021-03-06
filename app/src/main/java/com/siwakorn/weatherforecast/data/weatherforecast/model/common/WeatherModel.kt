@@ -1,6 +1,8 @@
 package com.siwakorn.weatherforecast.data.weatherforecast.model.common
 
 import com.google.gson.annotations.SerializedName
+import com.siwakorn.weatherforcast.R
+import com.siwakorn.weatherforecast.common.resource.ResourceProvider
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.Weather
 
 /**
@@ -17,9 +19,9 @@ data class WeatherModel(
     @SerializedName("icon") val icon: String
 )
 
-fun WeatherModel.mapToDomain() = Weather(
+fun WeatherModel.mapToDomain(resourceProvider: ResourceProvider) = Weather(
     id = id,
     main = main,
     description = description,
-    icon = icon
+    iconUrl = resourceProvider.string(R.string.config_weather_icon_url, icon)
 )
