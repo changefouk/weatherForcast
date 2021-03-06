@@ -1,4 +1,4 @@
-package com.siwakorn.weatherforecast.ui.main.search
+package com.siwakorn.weatherforecast.ui.weatherforecast.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

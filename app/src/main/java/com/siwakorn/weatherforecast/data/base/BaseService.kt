@@ -20,10 +20,10 @@ abstract class BaseService<RESPONSE, RESULT> where RESPONSE : BaseResponse {
      * if don't need to validate response == null overide it
      * */
     protected fun validateResponse(response: RESPONSE): RESPONSE {
-        if (response.code?.toIntOrNull()?.isSuccess() == false) {
+        if (response.code?.isSuccess() == false) {
             throw ResponseDataErrorException(
                 responseErrorMessage = response.message ?: "",
-                _responseErrorCode = response.code.toIntOrNull() ?: 0
+                _responseErrorCode = response.code
             )
         }
         return response

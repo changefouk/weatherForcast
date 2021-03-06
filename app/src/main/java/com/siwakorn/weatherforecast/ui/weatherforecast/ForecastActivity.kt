@@ -1,4 +1,4 @@
-package com.siwakorn.weatherforecast.ui.main
+package com.siwakorn.weatherforecast.ui.weatherforecast
 
 import android.view.LayoutInflater
 import com.siwakorn.weatherforcast.databinding.ActivityForecastBinding

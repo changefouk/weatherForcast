@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--  set ip for permit network connection on Android 9 and above  -->
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">openweathermap.org</domain>
     </domain-config>

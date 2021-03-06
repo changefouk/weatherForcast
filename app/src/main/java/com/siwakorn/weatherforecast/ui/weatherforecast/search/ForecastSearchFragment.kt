@@ -1,8 +1,7 @@
-package com.siwakorn.weatherforecast.ui.main.search
+package com.siwakorn.weatherforecast.ui.weatherforecast.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import com.siwakorn.weatherforcast.databinding.FragmentForecastSearchBinding
 import com.siwakorn.weatherforecast.ui.base.BaseFragment
 import com.siwakorn.weatherforecast.util.extension.loadImageUrl

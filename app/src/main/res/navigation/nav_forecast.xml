@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/forecastMainFragment"
-        android:name="com.siwakorn.weatherforecast.ui.main.search.ForecastSearchFragment"
+        android:name="com.siwakorn.weatherforecast.ui.weatherforecast.search.ForecastSearchFragment"
         android:label="ForecastMainFragment"
         tool:layout="@layout/fragment_forecast_search">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/forecastDailyFragment"
-        android:name="com.siwakorn.weatherforecast.ui.main.daily.ForecastDailyFragment"
+        android:name="com.siwakorn.weatherforecast.ui.weatherforecast.daily.ForecastDailyFragment"
         android:label="ForecastDailyFragment"
         tool:layout="@layout/fragment_forecast_daily" />
 </navigation>

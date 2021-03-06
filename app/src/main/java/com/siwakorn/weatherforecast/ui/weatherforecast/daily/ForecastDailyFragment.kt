@@ -1,4 +1,4 @@
-package com.siwakorn.weatherforecast.ui.main.daily
+package com.siwakorn.weatherforecast.ui.weatherforecast.daily
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
