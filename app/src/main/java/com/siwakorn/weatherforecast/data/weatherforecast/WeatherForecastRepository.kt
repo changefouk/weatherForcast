@@ -33,7 +33,7 @@ constructor(private val api: WeatherForecastApi) : WeatherForecastRepository {
     override fun getForecast(request: GetForecastBody): Flow<ForecastResponse> =
         object : BaseService<ForecastResponseModel, ForecastResponse>() {
             override suspend fun callApi(): ForecastResponseModel =
-                api.getForecast(request.cityName, request.unit)
+                api.getForecast(request.cityName, request.unit, request.cnt)
 
             override fun mapper(from: ForecastResponseModel): ForecastResponse =
                 from.mapToDomain()

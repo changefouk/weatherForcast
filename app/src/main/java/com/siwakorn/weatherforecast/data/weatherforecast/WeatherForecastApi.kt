@@ -26,7 +26,8 @@ interface WeatherForecastApi {
     @GET(ApiConstant.EndPoint.FORECAST)
     suspend fun getForecast(
         @Query(ApiConstant.QueryParam.Q) cityName: String,
-        @Query(ApiConstant.QueryParam.UNITS) unit: String
+        @Query(ApiConstant.QueryParam.UNITS) unit: String,
+        @Query(ApiConstant.QueryParam.CNT) countTime: Int
     ): ForecastResponseModel
 
 }

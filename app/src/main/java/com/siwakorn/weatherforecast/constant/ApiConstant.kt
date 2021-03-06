@@ -13,6 +13,7 @@ object ApiConstant {
         const val LONGITUDE = "lon"
         const val UNITS = "units"
         const val Q = "q"
+        const val CNT = "cnt"
     }
 
 }
