@@ -28,6 +28,21 @@ class ForecastSearchFragment : BaseFragment<FragmentForecastSearchBinding>() {
             weatherDetailBinding.ivWeather.loadImageUrl(it)
         })
 
+        viewModel.temp.observe(viewLifecycleOwner, {
+            weatherDetailBinding.tvWeatherTemp.text = it
+        })
+
+        viewModel.humidity.observe(viewLifecycleOwner, {
+            weatherDetailBinding.tvWeatherHumidity.text = it
+        })
+
+        viewModel.cityName.observe(viewLifecycleOwner, {
+            weatherDetailBinding.tvWeatherCity.text = it
+        })
+
+        viewModel.dateTime.observe(viewLifecycleOwner, {
+            weatherDetailBinding.tvWeatherDate.text = it
+        })
 
     }
 

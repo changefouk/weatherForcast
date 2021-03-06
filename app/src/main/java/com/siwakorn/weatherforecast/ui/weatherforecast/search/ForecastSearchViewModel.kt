@@ -24,8 +24,10 @@ class ForecastSearchViewModel constructor(
 
     val weatherIconUrl: LiveData<String> =
         _weather.map { resourceProvider.string(R.string.config_weather_icon_url, it.weather.icon) }
-
-    val temp: LiveData<String> = _weather.map { it.weather.main }
+    val temp: LiveData<String> = _weather.map { it.weatherMain.temp.toString() }
+    val humidity: LiveData<String> = _weather.map { it.weatherMain.humidity.toString() }
+    val cityName: LiveData<String> = _weather.map { it.cityName }
+    val dateTime: LiveData<String> = _weather.map { it.getDisplayDateTime() }
 
     fun fetch() {
         viewModelScope.launch {
