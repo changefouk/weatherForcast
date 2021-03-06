@@ -16,12 +16,9 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentWeatherSearchBinding
         get() = FragmentWeatherSearchBinding::inflate
 
-    private val weatherDetailBinding: LayoutWeatherDetailBinding by lazy { binding.weatherDetail }
-
     private val viewModel: ForecastSearchViewModel by viewModel()
 
     override fun setup() {
-        observe()
         viewModel.fetch()
         binding.btnSeeForecast.setOnClickListener {
             findNavController().navigate(
@@ -30,27 +27,28 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
                 )
             )
         }
+        observe()
     }
 
     private fun observe() {
         viewModel.weatherIconUrl.observe(viewLifecycleOwner, {
-            weatherDetailBinding.ivWeather.loadImageUrl(it)
+            binding.weatherDetail.ivWeather.loadImageUrl(it)
         })
 
         viewModel.temp.observe(viewLifecycleOwner, {
-            weatherDetailBinding.tvWeatherTemp.text = it
+            binding.weatherDetail.tvWeatherTemp.text = it
         })
 
         viewModel.humidity.observe(viewLifecycleOwner, {
-            weatherDetailBinding.tvWeatherHumidity.text = it
+            binding.weatherDetail.tvWeatherHumidity.text = it
         })
 
         viewModel.cityName.observe(viewLifecycleOwner, {
-            weatherDetailBinding.tvWeatherCity.text = it
+            binding.weatherDetail.tvWeatherCity.text = it
         })
 
         viewModel.dateTime.observe(viewLifecycleOwner, {
-            weatherDetailBinding.tvWeatherDate.text = it
+            binding.weatherDetail.tvWeatherDate.text = it
         })
     }
 
