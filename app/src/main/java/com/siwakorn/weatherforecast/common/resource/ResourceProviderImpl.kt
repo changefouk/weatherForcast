@@ -12,4 +12,6 @@ class ResourceProviderImpl constructor(
 
     override fun string(id: Int, vararg strings: String): String = context.getString(id, *strings)
 
+    override fun string(id: Int, vararg value: Any): String = context.getString(id, *value)
+
 }

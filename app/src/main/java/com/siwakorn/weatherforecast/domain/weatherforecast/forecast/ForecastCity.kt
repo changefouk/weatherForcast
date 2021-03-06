@@ -6,4 +6,5 @@ data class ForecastCity(
     val id: Int,
     val name: String,
     val coord: Coord,
+    val timezone: Long
 )

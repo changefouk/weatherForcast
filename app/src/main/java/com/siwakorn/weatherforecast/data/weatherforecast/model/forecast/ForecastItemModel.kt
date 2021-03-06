@@ -16,6 +16,6 @@ data class ForecastItemModel(
 fun ForecastItemModel.mapToDomain() = ForecastItem(
     dateTime = dateTime,
     main = main.mapToDomain(),
-    weather = weather.map { it.mapToDomain() },
+    weather = weather[0].mapToDomain(),
     dateTimeTxt = dateTimeTxt
 )

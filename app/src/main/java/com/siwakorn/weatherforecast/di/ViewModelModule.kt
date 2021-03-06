@@ -6,5 +6,5 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     factory { ForecastSearchViewModel(get(), get()) }
-    factory { ForecastDailyViewModel(get()) }
+    factory { ForecastDailyViewModel(get(), get()) }
 }

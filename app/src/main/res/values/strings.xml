@@ -6,4 +6,7 @@
 
     <!--  label -->
     <string name="no_internet_exception">You are offline</string>
+    <string name="humidity_percent">%1$d \%%</string>
+    <string name="temperature_celsius">%.0f °C</string>
+    <string name="temperature_fahrenheit">%.0f °F</string>
 </resources>
