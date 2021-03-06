@@ -4,5 +4,5 @@ import com.siwakorn.weatherforecast.ui.weatherforecast.search.ForecastSearchView
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    factory { ForecastSearchViewModel(get()) }
+    factory { ForecastSearchViewModel(get(), get()) }
 }
