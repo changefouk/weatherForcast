@@ -32,6 +32,10 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
         }, {
 
         })
+
+        binding.tbTemp.apply {
+
+        }
     }
 
     private fun observe() {

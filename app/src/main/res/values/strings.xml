@@ -9,4 +9,6 @@
     <string name="humidity_percent">%1$d \%%</string>
     <string name="temperature_celsius">%.0f °C</string>
     <string name="temperature_fahrenheit">%.0f °F</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
 </resources>
