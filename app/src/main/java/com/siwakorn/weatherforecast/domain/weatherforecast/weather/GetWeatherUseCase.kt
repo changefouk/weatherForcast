@@ -4,13 +4,13 @@ import com.siwakorn.weatherforecast.data.weatherforecast.WeatherForecastReposito
 import kotlinx.coroutines.flow.Flow
 
 interface GetWeatherUseCase {
-    fun execute(request: GetWeatherForecastBody): Flow<WeatherResponse>
+    fun execute(request: GetWeatherBody): Flow<WeatherResponse>
 }
 
-class GetWeatherUseCaseImpl(
+class GetWeatherUseCaseImpl constructor(
     private val repository: WeatherForecastRepository
 ) : GetWeatherUseCase {
 
-    override fun execute(request: GetWeatherForecastBody) = repository.getWeather(request)
+    override fun execute(request: GetWeatherBody) = repository.getWeather(request)
 
 }

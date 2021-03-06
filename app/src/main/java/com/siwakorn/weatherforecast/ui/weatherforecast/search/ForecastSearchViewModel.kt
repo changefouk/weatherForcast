@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.siwakorn.weatherforcast.R
 import com.siwakorn.weatherforecast.common.resource.ResourceProvider
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.WeatherUnit
-import com.siwakorn.weatherforecast.domain.weatherforecast.weather.GetWeatherForecastBody
+import com.siwakorn.weatherforecast.domain.weatherforecast.weather.GetWeatherBody
 import com.siwakorn.weatherforecast.domain.weatherforecast.weather.GetWeatherUseCase
 import com.siwakorn.weatherforecast.domain.weatherforecast.weather.WeatherResponse
 import com.siwakorn.weatherforecast.ui.base.BaseViewModel
@@ -31,7 +31,7 @@ class ForecastSearchViewModel constructor(
 
     fun fetch() {
         viewModelScope.launch {
-            val request = GetWeatherForecastBody(13.756331, 100.501762, WeatherUnit.CELSIUS.unit)
+            val request = GetWeatherBody(13.756331, 100.501762, WeatherUnit.CELSIUS.unit)
             useCase.execute(request)
                 .flowOn(Dispatchers.IO)
                 .onStart { showLoading() }
