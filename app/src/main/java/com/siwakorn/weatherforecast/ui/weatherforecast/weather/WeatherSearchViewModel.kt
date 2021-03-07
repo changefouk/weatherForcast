@@ -41,7 +41,7 @@ class WeatherSearchViewModel constructor(
     val cityName: LiveData<String> = _weather.map { it.cityName }
     val dateTime: LiveData<String> = _weather.map { it.getDisplayDateTime() }
 
-    val showContent:LiveData<Boolean> = _weather.map { it != null }
+    val showContent: LiveData<Boolean> = _weather.map { it != null }
 
     fun getWeather(queryCityName: String? = null, location: Location? = null) {
         viewModelScope.launch {
