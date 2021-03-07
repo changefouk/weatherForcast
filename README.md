@@ -39,10 +39,10 @@ If you want new feature need to ..
  - Then create your activity, fragment and viewModel in ui package.
  - don't forgot to provide viewModel in ViewModelModule.kt
  
- Reference
---------------------------------------------------
+[OpenWeatherMap]:https://openweathermap.org/
 [Android-Navigation-Component]:https://developer.android.com/guide/navigation/navigation-getting-started/
 [Retrofit]:https://github.com/square/retrofit
+[Coroutines]:https://developer.android.com/kotlin/coroutines
 [OkHttp]:https://github.com/square/okhttp
 [Logging-Interceptor]:https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
 [Koin]:https://github.com/InsertKoinIO/koin
