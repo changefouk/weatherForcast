@@ -14,4 +14,6 @@
     <string name="forecast_today">More forecast today ></string>
     <string name="error_title">:(</string>
     <string name="error_message_current_location">Information not found\n Try typing city name to search weather</string>
+    <string name="snack_location_message">Allow permission location for use services</string>
+    <string name="snack_button_settings">go to setting</string>
 </resources>

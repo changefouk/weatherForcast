@@ -15,6 +15,7 @@ import com.google.android.gms.location.*
 import com.google.android.gms.location.LocationServices.getFusedLocationProviderClient
 import com.siwakorn.weatherforecast.util.CustomDialog
 import com.siwakorn.weatherforecast.util.runtimePermission
+import java.util.concurrent.TimeUnit
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
@@ -88,7 +89,8 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     @SuppressLint("MissingPermission")
     private fun getLocation(onSuccess: (Location) -> Unit, onFailure: () -> Unit) {
         val locationRequest = LocationRequest.create()
-            .setMaxWaitTime(MAX_Wait_TIME)
+            .setMaxWaitTime(TimeUnit.SECONDS.toMillis(MAX_WAIT_TIME))
+            .setInterval(TimeUnit.SECONDS.toMillis(MAX_WAIT_TIME))
         fusedLocationClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 onSuccess.invoke(locationResult.lastLocation)
@@ -107,7 +109,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     }
 
     companion object {
-        private const val MAX_Wait_TIME = 1000L
+        private const val MAX_WAIT_TIME = 3L
     }
 
 }
