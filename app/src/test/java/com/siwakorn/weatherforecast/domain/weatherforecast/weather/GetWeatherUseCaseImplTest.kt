@@ -3,10 +3,7 @@ package com.siwakorn.weatherforecast.domain.weatherforecast.weather
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth
 import com.siwakorn.weatherforecast.common.network.exception.ResponseDataErrorException
-import com.siwakorn.weatherforecast.common.network.exception.ResponseErrorException
 import com.siwakorn.weatherforecast.data.weatherforecast.WeatherForecastRepository
-import com.siwakorn.weatherforecast.domain.weatherforecast.forecast.ForecastResponse
-import com.siwakorn.weatherforecast.domain.weatherforecast.forecast.GetForecastBody
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
