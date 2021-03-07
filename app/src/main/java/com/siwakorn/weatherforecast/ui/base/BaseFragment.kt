@@ -8,10 +8,12 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.google.android.gms.location.*
 import com.google.android.gms.location.LocationServices.getFusedLocationProviderClient
+import com.siwakorn.weatherforecast.util.CustomDialog
 import com.siwakorn.weatherforecast.util.runtimePermission
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
@@ -19,7 +21,13 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     private var _binding: ViewBinding? = null
     abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> VB
 
-    private val fusedLocationClient by lazy { getFusedLocationProviderClient(context) }
+    private val fusedLocationClient by lazy { getFusedLocationProviderClient(requireContext()) }
+
+    private val progressLoading: AlertDialog by lazy {
+        CustomDialog.getProgressLoading(
+            requireContext()
+        )
+    }
 
     @Suppress("UNCHECKED_CAST")
     protected val binding: VB
@@ -46,29 +54,60 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         _binding = null
     }
 
-    protected fun checkPermissionLocation(
+    protected fun showProgressLoading() {
+        progressLoading.show()
+    }
+
+    protected fun hideProgressLoading() {
+        progressLoading.cancel()
+    }
+
+    protected fun <V : BaseViewModel> V.observeLoading() =
+        apply {
+            loading.observe(this@BaseFragment, {
+                if (it) {
+                    showProgressLoading()
+                } else {
+                    hideProgressLoading()
+                }
+            })
+        }
+
+    protected fun checkPermissionAndGetLocation(
         onSuccess: (Location) -> Unit,
-        onNeverAskAgain: () -> Unit) {
+        onFailure: () -> Unit,
+        onPermissionNeverAskAgain: () -> Unit
+    ) {
         runtimePermission(Manifest.permission.ACCESS_FINE_LOCATION) {
-            granted { getLocation(onSuccess) }
+            granted { getLocation(onSuccess, onFailure) }
             rationaleShouldBeShown { _, token -> token.continuePermissionRequest() }
-            neverAskAgain { onNeverAskAgain.invoke() }
+            neverAskAgain { onPermissionNeverAskAgain.invoke() }
         }
     }
 
     @SuppressLint("MissingPermission")
-    private fun getLocation(onSuccess: (Location) -> Unit) {
+    private fun getLocation(onSuccess: (Location) -> Unit, onFailure: () -> Unit) {
         val locationRequest = LocationRequest.create()
+            .setMaxWaitTime(MAX_Wait_TIME)
         fusedLocationClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
-                super.onLocationResult(locationResult)
                 onSuccess.invoke(locationResult.lastLocation)
+                fusedLocationClient.removeLocationUpdates(this)
             }
 
-            override fun onLocationAvailability(p0: LocationAvailability) {
-                super.onLocationAvailability(p0)
+            override fun onLocationAvailability(locationAvailability: LocationAvailability) {
+                if (!locationAvailability.isLocationAvailable) {
+                    onFailure.invoke()
+                    fusedLocationClient.removeLocationUpdates(this)
+                } else {
+                    super.onLocationAvailability(locationAvailability)
+                }
             }
         }, Looper.getMainLooper())
+    }
+
+    companion object {
+        private const val MAX_Wait_TIME = 1000L
     }
 
 }

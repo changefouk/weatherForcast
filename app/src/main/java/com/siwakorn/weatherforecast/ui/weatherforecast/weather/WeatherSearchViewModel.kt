@@ -13,6 +13,7 @@ import com.siwakorn.weatherforecast.domain.weatherforecast.weather.GetWeatherUse
 import com.siwakorn.weatherforecast.domain.weatherforecast.weather.WeatherResponse
 import com.siwakorn.weatherforecast.ui.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -21,14 +22,12 @@ class WeatherSearchViewModel constructor(
     private val useCase: GetWeatherUseCase
 ) : BaseViewModel() {
 
+    private val _weather = MutableLiveData<WeatherResponse>()
     private val _weatherUnit = MutableLiveData(WeatherUnit.CELSIUS)
     val weatherUnit: LiveData<WeatherUnit> = _weatherUnit
 
-    private val _weather = MutableLiveData<WeatherResponse>()
-
     val weatherIconUrl: LiveData<String> =
         _weather.map { resourceProvider.string(R.string.config_weather_icon_url, it.weather.icon) }
-
     val temp: LiveData<String> = _weather.map {
         if (_weatherUnit.value == WeatherUnit.FAHRENHEIT) {
             resourceProvider.string(R.string.temperature_fahrenheit, it.weatherMain.temp)
@@ -36,13 +35,13 @@ class WeatherSearchViewModel constructor(
             resourceProvider.string(R.string.temperature_celsius, it.weatherMain.temp)
         }
     }
-
     val humidity: LiveData<String> = _weather.map {
         resourceProvider.string(R.string.humidity_percent, it.weatherMain.humidity)
     }
-
     val cityName: LiveData<String> = _weather.map { it.cityName }
     val dateTime: LiveData<String> = _weather.map { it.getDisplayDateTime() }
+
+    val showContent:LiveData<Boolean> = _weather.map { it != null }
 
     fun getWeather(queryCityName: String? = null, location: Location? = null) {
         viewModelScope.launch {
@@ -56,7 +55,7 @@ class WeatherSearchViewModel constructor(
                 .flowOn(Dispatchers.IO)
                 .onStart { showLoading() }
                 .onCompletion { hideLoading() }
-                .catch { showDialogError(it) }
+                .catch { showDialogError(Exception(it)) }
                 .collect {
                     _weather.value = it
                 }

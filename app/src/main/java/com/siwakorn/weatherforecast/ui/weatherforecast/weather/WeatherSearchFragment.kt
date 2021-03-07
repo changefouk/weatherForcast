@@ -3,12 +3,16 @@ package com.siwakorn.weatherforecast.ui.weatherforecast.weather
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.siwakorn.weatherforcast.R
 import com.siwakorn.weatherforcast.databinding.FragmentWeatherSearchBinding
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.WeatherUnit
 import com.siwakorn.weatherforecast.ui.base.BaseFragment
 import com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.ForecastDailyNavigation
+import com.siwakorn.weatherforecast.util.extension.goneView
 import com.siwakorn.weatherforecast.util.extension.loadImageUrl
+import com.siwakorn.weatherforecast.util.extension.visibleView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -23,18 +27,6 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
         observe()
         setupView()
         initData()
-    }
-
-    private fun initData() {
-        if (!viewModel.hasWeatherData()) {
-            checkPermissionLocation(
-                onSuccess = {
-                    viewModel.getWeather(location = it)
-                },
-                onNeverAskAgain = {
-                    // TODO when nerver ask issue
-                })
-        }
     }
 
     private fun setupView() {
@@ -59,13 +51,16 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
 
         binding.edtSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                viewModel.getWeather(queryCityName = binding.edtSearch.text.toString())
+                if (binding.edtSearch.text.toString().isNotEmpty()) {
+                    viewModel.getWeather(queryCityName = binding.edtSearch.text.toString())
+                }
             }
             false
         }
     }
 
     private fun observe() {
+        viewModel.observeLoading()
         viewModel.weatherIconUrl.observe(viewLifecycleOwner, {
             binding.weatherDetail.ivWeather.loadImageUrl(it)
         })
@@ -85,6 +80,42 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
         viewModel.dateTime.observe(viewLifecycleOwner, {
             binding.weatherDetail.tvWeatherDate.text = it
         })
+
+        viewModel.showContent.observe(viewLifecycleOwner, {
+            if (it) {
+                showContentView()
+            }
+        })
+    }
+
+    private fun initData() {
+        if (!viewModel.hasWeatherData()) {
+            viewModel.showLoading()
+            checkPermissionAndGetLocation(
+                onSuccess = {
+                    viewModel.getWeather(location = it)
+                },
+                onFailure = {
+                    viewModel.hideLoading()
+                    showErrorView(getString(R.string.error_message_current_location))
+                },
+                onPermissionNeverAskAgain = {
+                    viewModel.hideLoading()
+                    showErrorView(getString(R.string.error_message_current_location))
+                    Toast.makeText(context, "", Toast.LENGTH_SHORT).show()
+                })
+        }
+    }
+
+    private fun showContentView() {
+        binding.errorView.errorViewRoot.goneView()
+        binding.clWeatherContent.visibleView()
+    }
+
+    private fun showErrorView(message: String) {
+        binding.clWeatherContent.goneView()
+        binding.errorView.errorViewRoot.visibleView()
+        binding.errorView.tvErrorMessage.text = message
     }
 
 }
