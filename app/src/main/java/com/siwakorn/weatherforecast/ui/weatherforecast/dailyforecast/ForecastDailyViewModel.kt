@@ -12,10 +12,7 @@ import com.siwakorn.weatherforecast.domain.weatherforecast.forecast.GetForecastU
 import com.siwakorn.weatherforecast.ui.base.BaseViewModel
 import com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.adapter.ForecastDailyUi
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class ForecastDailyViewModel constructor(
@@ -38,6 +35,7 @@ class ForecastDailyViewModel constructor(
                 .flowOn(Dispatchers.IO)
                 .onStart { showLoading() }
                 .onCompletion { hideLoading() }
+                .catch { showDialogError(it) }
                 .collect {
                     _forecastResponse.value = it
                 }
