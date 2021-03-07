@@ -1,4 +1,4 @@
-package com.siwakorn.weatherforecast.ui.weatherforecast.search
+package com.siwakorn.weatherforecast.ui.weatherforecast.weather
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.siwakorn.weatherforcast.databinding.FragmentWeatherSearchBinding
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.WeatherUnit
 import com.siwakorn.weatherforecast.ui.base.BaseFragment
-import com.siwakorn.weatherforecast.ui.weatherforecast.daily.ForecastDailyNavigation
+import com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.ForecastDailyNavigation
 import com.siwakorn.weatherforecast.util.extension.loadImageUrl
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -17,7 +17,7 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentWeatherSearchBinding
         get() = FragmentWeatherSearchBinding::inflate
 
-    private val viewModel: ForecastSearchViewModel by viewModel()
+    private val viewModel: WeatherSearchViewModel by viewModel()
 
     override fun setup() {
         observe()

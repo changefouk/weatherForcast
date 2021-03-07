@@ -1,4 +1,4 @@
-package com.siwakorn.weatherforecast.ui.weatherforecast.search
+package com.siwakorn.weatherforecast.ui.weatherforecast.weather
 
 import android.location.Location
 import androidx.lifecycle.LiveData
@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class ForecastSearchViewModel constructor(
+class WeatherSearchViewModel constructor(
     private val resourceProvider: ResourceProvider,
     private val useCase: GetWeatherUseCase
 ) : BaseViewModel() {

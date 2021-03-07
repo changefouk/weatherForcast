@@ -1,10 +1,10 @@
 package com.siwakorn.weatherforecast.di
 
-import com.siwakorn.weatherforecast.ui.weatherforecast.daily.ForecastDailyViewModel
-import com.siwakorn.weatherforecast.ui.weatherforecast.search.ForecastSearchViewModel
+import com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.ForecastDailyViewModel
+import com.siwakorn.weatherforecast.ui.weatherforecast.weather.WeatherSearchViewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    factory { ForecastSearchViewModel(get(), get()) }
+    factory { WeatherSearchViewModel(get(), get()) }
     factory { ForecastDailyViewModel(get(), get()) }
 }

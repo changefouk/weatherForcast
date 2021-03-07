@@ -1,4 +1,4 @@
-package com.siwakorn.weatherforecast.ui.weatherforecast.daily
+package com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast
 
 import android.os.Parcelable
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.WeatherUnit

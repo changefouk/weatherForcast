@@ -3,7 +3,7 @@ package com.siwakorn.weatherforecast.domain.weatherforecast.forecast
 import com.siwakorn.weatherforcast.R
 import com.siwakorn.weatherforecast.common.resource.ResourceProvider
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.WeatherUnit
-import com.siwakorn.weatherforecast.ui.weatherforecast.daily.adapter.ForecastDailyUi
+import com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.adapter.ForecastDailyUi
 import com.siwakorn.weatherforecast.util.extension.toDisplayTime
 
 data class ForecastResponse(

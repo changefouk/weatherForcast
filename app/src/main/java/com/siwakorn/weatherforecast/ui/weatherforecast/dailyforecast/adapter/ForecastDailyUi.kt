@@ -1,4 +1,4 @@
-package com.siwakorn.weatherforecast.ui.weatherforecast.daily.adapter
+package com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.adapter
 
 data class ForecastDailyUi(
     val time: String,

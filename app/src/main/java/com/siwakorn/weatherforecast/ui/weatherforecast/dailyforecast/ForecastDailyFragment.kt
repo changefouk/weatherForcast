@@ -1,4 +1,4 @@
-package com.siwakorn.weatherforecast.ui.weatherforecast.daily
+package com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.siwakorn.weatherforcast.databinding.FragmentForecastDailyBinding
 import com.siwakorn.weatherforecast.ui.base.BaseFragment
-import com.siwakorn.weatherforecast.ui.weatherforecast.daily.adapter.ForecastDailyAdapter
+import com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.adapter.ForecastDailyAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

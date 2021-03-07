@@ -5,7 +5,7 @@ import com.siwakorn.weatherforcast.databinding.ActivityForecastBinding
 import com.siwakorn.weatherforecast.ui.base.BaseActivity
 
 
-class ForecastActivity : BaseActivity<ActivityForecastBinding>() {
+class WeatherForecastActivity : BaseActivity<ActivityForecastBinding>() {
 
     override val bindingInflater: (LayoutInflater) -> ActivityForecastBinding
         get() = ActivityForecastBinding::inflate

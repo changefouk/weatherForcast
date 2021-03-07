@@ -21,7 +21,7 @@
         android:theme="@style/Theme.WeatherForecast"
         tools:ignore="UnusedAttribute">
 
-        <activity android:name="com.siwakorn.weatherforecast.ui.weatherforecast.ForecastActivity">
+        <activity android:name="com.siwakorn.weatherforecast.ui.weatherforecast.WeatherForecastActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

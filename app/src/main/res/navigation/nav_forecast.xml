@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/forecastMainFragment"
-        android:name="com.siwakorn.weatherforecast.ui.weatherforecast.search.WeatherSearchFragment"
+        android:name="com.siwakorn.weatherforecast.ui.weatherforecast.weather.WeatherSearchFragment"
         android:label="ForecastMainFragment"
         tool:layout="@layout/fragment_weather_search">
         <action
@@ -20,11 +20,12 @@
     </fragment>
     <fragment
         android:id="@+id/forecastDailyFragment"
-        android:name="com.siwakorn.weatherforecast.ui.weatherforecast.daily.ForecastDailyFragment"
+        android:name="com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.ForecastDailyFragment"
         android:label="ForecastDailyFragment"
         tool:layout="@layout/fragment_forecast_daily">
+
         <argument
             android:name="data"
-            app:argType="com.siwakorn.weatherforecast.ui.weatherforecast.daily.ForecastDailyNavigation" />
+            app:argType="com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.ForecastDailyNavigation" />
     </fragment>
 </navigation>

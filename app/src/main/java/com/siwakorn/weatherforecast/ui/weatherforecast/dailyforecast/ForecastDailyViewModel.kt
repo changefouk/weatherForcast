@@ -1,4 +1,4 @@
-package com.siwakorn.weatherforecast.ui.weatherforecast.daily
+package com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import com.siwakorn.weatherforecast.domain.weatherforecast.forecast.ForecastResp
 import com.siwakorn.weatherforecast.domain.weatherforecast.forecast.GetForecastBody
 import com.siwakorn.weatherforecast.domain.weatherforecast.forecast.GetForecastUseCase
 import com.siwakorn.weatherforecast.ui.base.BaseViewModel
-import com.siwakorn.weatherforecast.ui.weatherforecast.daily.adapter.ForecastDailyUi
+import com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.adapter.ForecastDailyUi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn

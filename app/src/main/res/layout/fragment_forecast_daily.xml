@@ -26,10 +26,10 @@
         android:padding="8dp"
         android:textColor="@color/black"
         android:textSize="40sp"
+        app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constrainedWidth="true"
         tool:text="London" />
 
     <androidx.cardview.widget.CardView
