@@ -8,7 +8,7 @@ import com.siwakorn.weatherforecast.util.extension.loadImageUrl
 
 class ForecastDailyAdapter : RecyclerView.Adapter<ForecastDailyAdapter.ForecastDailyHolder>() {
 
-    private var items: List<ForecastDailyUi> = listOf()
+    private var items: List<ForecastDailyAdapterUiModel> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
             : ForecastDailyHolder = ForecastDailyHolder.create(parent)
@@ -20,7 +20,7 @@ class ForecastDailyAdapter : RecyclerView.Adapter<ForecastDailyAdapter.ForecastD
 
     override fun getItemCount(): Int = items.count()
 
-    fun setData(items: List<ForecastDailyUi>) {
+    fun setData(items: List<ForecastDailyAdapterUiModel>) {
         this.items = items
         notifyDataSetChanged()
     }
@@ -28,7 +28,7 @@ class ForecastDailyAdapter : RecyclerView.Adapter<ForecastDailyAdapter.ForecastD
     class ForecastDailyHolder(private val binding: ItemForecastBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: ForecastDailyUi) {
+        fun bind(data: ForecastDailyAdapterUiModel) {
             binding.tvItemForecastTime.text = data.time
             binding.tvItemForecastTemp.text = data.temp
             binding.tvItemForecastHumidity.text = data.humidity

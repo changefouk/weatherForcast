@@ -10,7 +10,7 @@ import com.siwakorn.weatherforecast.domain.weatherforecast.forecast.ForecastResp
 import com.siwakorn.weatherforecast.domain.weatherforecast.forecast.GetForecastBody
 import com.siwakorn.weatherforecast.domain.weatherforecast.forecast.GetForecastUseCase
 import com.siwakorn.weatherforecast.ui.base.BaseViewModel
-import com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.adapter.ForecastDailyUi
+import com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.adapter.ForecastDailyAdapterUiModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -23,7 +23,7 @@ class ForecastDailyViewModel constructor(
     private var weatherUnit: WeatherUnit = WeatherUnit.CELSIUS
 
     private val _forecastResponse = MutableLiveData<ForecastResponse>()
-    val listDailyForecast: LiveData<List<ForecastDailyUi>> = _forecastResponse.map {
+    val listDailyForecast: LiveData<List<ForecastDailyAdapterUiModel>> = _forecastResponse.map {
         it.mapListForecastUi(resourceProvider, weatherUnit)
     }
      val cityName: LiveData<String> = _forecastResponse.map { it.city.name }

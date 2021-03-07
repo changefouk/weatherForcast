@@ -3,7 +3,7 @@ package com.siwakorn.weatherforecast.domain.weatherforecast.forecast
 import com.siwakorn.weatherforcast.R
 import com.siwakorn.weatherforecast.common.resource.ResourceProvider
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.WeatherUnit
-import com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.adapter.ForecastDailyUi
+import com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.adapter.ForecastDailyAdapterUiModel
 import com.siwakorn.weatherforecast.util.extension.toDisplayTime
 import java.time.Instant
 import java.time.ZoneId
@@ -15,7 +15,7 @@ data class ForecastResponse(
     fun mapListForecastUi(
         resourceProvider: ResourceProvider,
         unit: WeatherUnit
-    ): List<ForecastDailyUi> {
+    ): List<ForecastDailyAdapterUiModel> {
 
         val listForecastToday = getListForecastToday()
 
@@ -25,7 +25,7 @@ data class ForecastResponse(
             R.string.temperature_fahrenheit
         }
         return listForecastToday.map {
-            ForecastDailyUi(
+            ForecastDailyAdapterUiModel(
                 time = it.dateTime.toDisplayTime(city.timezone),
                 temp = resourceProvider.string(tempResource, it.main.temp),
                 humidity = resourceProvider.string(R.string.humidity_percent, it.main.humidity),
