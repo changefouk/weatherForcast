@@ -2,9 +2,12 @@ package com.siwakorn.weatherforecast.ui.base
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.os.Looper
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +16,8 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.google.android.gms.location.*
 import com.google.android.gms.location.LocationServices.getFusedLocationProviderClient
+import com.google.android.material.snackbar.Snackbar
+import com.siwakorn.weatherforcast.R
 import com.siwakorn.weatherforecast.util.CustomDialog
 import com.siwakorn.weatherforecast.util.runtimePermission
 import java.util.concurrent.TimeUnit
@@ -85,6 +90,24 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
             neverAskAgain { onPermissionNeverAskAgain.invoke() }
         }
     }
+
+    protected fun showSnackBarNeverAskAgain() {
+        val snackbar = Snackbar.make(
+            binding.root,
+            resources.getString(R.string.snack_location_message),
+            Snackbar.LENGTH_LONG
+        )
+
+        snackbar.setAction(resources.getString(R.string.snack_button_settings)) {
+            val intent = Intent()
+            intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+            val uri: Uri = Uri.fromParts("package", activity?.packageName, null)
+            intent.data = uri
+            this.startActivity(intent)
+        }
+        snackbar.show()
+    }
+
 
     @SuppressLint("MissingPermission")
     private fun getLocation(onSuccess: (Location) -> Unit, onFailure: () -> Unit) {

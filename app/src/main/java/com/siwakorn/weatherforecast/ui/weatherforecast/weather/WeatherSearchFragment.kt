@@ -1,13 +1,9 @@
 package com.siwakorn.weatherforecast.ui.weatherforecast.weather
 
-import android.content.Intent
-import android.net.Uri
-import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.siwakorn.weatherforcast.R
 import com.siwakorn.weatherforcast.databinding.FragmentWeatherSearchBinding
 import com.siwakorn.weatherforecast.common.network.exception.NoInternetException
@@ -125,23 +121,6 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
         binding.clWeatherContent.goneView()
         binding.errorView.errorViewRoot.visibleView()
         binding.errorView.tvErrorMessage.text = message
-    }
-
-    private fun showSnackBarNeverAskAgain() {
-        val snackbar = Snackbar.make(
-            binding.root,
-            resources.getString(R.string.snack_location_message),
-            Snackbar.LENGTH_LONG
-        )
-
-        snackbar.setAction(resources.getString(R.string.snack_button_settings)) {
-            val intent = Intent()
-            intent.action = ACTION_APPLICATION_DETAILS_SETTINGS
-            val uri: Uri = Uri.fromParts("package", activity?.packageName, null)
-            intent.data = uri
-            this.startActivity(intent)
-        }
-        snackbar.show()
     }
 
     private fun handleError(it: Throwable?) {
