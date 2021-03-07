@@ -3,6 +3,7 @@ package com.siwakorn.weatherforecast.ui.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.hadilq.liveevent.LiveEvent
+import java.lang.Exception
 
 abstract class BaseViewModel : ViewModel() {
 

@@ -7,6 +7,9 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.siwakorn.weatherforcast.R
 import com.siwakorn.weatherforcast.databinding.FragmentWeatherSearchBinding
+import com.siwakorn.weatherforecast.common.network.exception.NoInternetException
+import com.siwakorn.weatherforecast.common.network.exception.ResponseDataErrorException
+import com.siwakorn.weatherforecast.common.network.exception.ResponseErrorException
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.WeatherUnit
 import com.siwakorn.weatherforecast.ui.base.BaseFragment
 import com.siwakorn.weatherforecast.ui.weatherforecast.dailyforecast.ForecastDailyNavigation
@@ -14,6 +17,7 @@ import com.siwakorn.weatherforecast.util.extension.goneView
 import com.siwakorn.weatherforecast.util.extension.loadImageUrl
 import com.siwakorn.weatherforecast.util.extension.visibleView
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.concurrent.TimeoutException
 
 
 class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
@@ -61,6 +65,9 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
 
     private fun observe() {
         viewModel.observeLoading()
+        viewModel.dialogError.observe(viewLifecycleOwner, {
+            handleError(it)
+        })
         viewModel.weatherIconUrl.observe(viewLifecycleOwner, {
             binding.weatherDetail.ivWeather.loadImageUrl(it)
         })
@@ -82,7 +89,7 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
         })
 
         viewModel.showContent.observe(viewLifecycleOwner, {
-            if (it) {
+            if (!binding.clWeatherContent.isShown) {
                 showContentView()
             }
         })
@@ -116,6 +123,15 @@ class WeatherSearchFragment : BaseFragment<FragmentWeatherSearchBinding>() {
         binding.clWeatherContent.goneView()
         binding.errorView.errorViewRoot.visibleView()
         binding.errorView.tvErrorMessage.text = message
+    }
+
+    private fun handleError(it: Throwable?) {
+        when (it) {
+            is ResponseErrorException -> showErrorView(message = it.message)
+            is NoInternetException -> showErrorView(message = it.message)
+            is ResponseDataErrorException -> showErrorView(message = it.message)
+            else -> showErrorView(getString(R.string.error_message_current_location))
+        }
     }
 
 }

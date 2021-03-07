@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
+import com.hadilq.liveevent.LiveEvent
 import com.siwakorn.weatherforcast.R
 import com.siwakorn.weatherforecast.common.resource.ResourceProvider
 import com.siwakorn.weatherforecast.domain.weatherforecast.common.WeatherUnit
@@ -12,6 +13,7 @@ import com.siwakorn.weatherforecast.domain.weatherforecast.weather.GetWeatherBod
 import com.siwakorn.weatherforecast.domain.weatherforecast.weather.GetWeatherUseCase
 import com.siwakorn.weatherforecast.domain.weatherforecast.weather.WeatherResponse
 import com.siwakorn.weatherforecast.ui.base.BaseViewModel
+import com.siwakorn.weatherforecast.util.extension.action
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -41,7 +43,8 @@ class WeatherSearchViewModel constructor(
     val cityName: LiveData<String> = _weather.map { it.cityName }
     val dateTime: LiveData<String> = _weather.map { it.getDisplayDateTime() }
 
-    val showContent: LiveData<Boolean> = _weather.map { it != null }
+    private val _showContent = LiveEvent<Unit>()
+    val showContent: LiveData<Unit> = _showContent
 
     fun getWeather(queryCityName: String? = null, location: Location? = null) {
         viewModelScope.launch {
@@ -55,9 +58,10 @@ class WeatherSearchViewModel constructor(
                 .flowOn(Dispatchers.IO)
                 .onStart { showLoading() }
                 .onCompletion { hideLoading() }
-                .catch { showDialogError(Exception(it)) }
+                .catch { showDialogError(it) }
                 .collect {
                     _weather.value = it
+                    _showContent.action()
                 }
         }
     }
