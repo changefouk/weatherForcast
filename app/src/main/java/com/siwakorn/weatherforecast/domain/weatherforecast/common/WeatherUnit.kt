@@ -14,15 +14,4 @@ package com.siwakorn.weatherforecast.domain.weatherforecast.common
 enum class WeatherUnit(val unit: String) {
     CELSIUS(unit = "metric"),
     FAHRENHEIT(unit = "imperial");
-
-    companion object {
-        @JvmStatic
-        fun displayUnit(source: WeatherUnit?): String {
-            return when (source) {
-                CELSIUS -> "°C"
-                FAHRENHEIT -> "°F"
-                else -> "°C"
-            }
-        }
-    }
 }
