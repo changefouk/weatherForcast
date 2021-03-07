@@ -23,6 +23,7 @@ android {
 
     buildTypes {
         debug {
+            getIsDefault().set(true)
             buildConfigField("String", "BASE_URL", '"https://api.openweathermap.org/"')
             buildConfigField("String", "API_KEY", '"04442feeb986c4c749710060f040d924"')
         }
